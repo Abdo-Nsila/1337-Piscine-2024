@@ -1,1 +1,4 @@
+.gitignore
 .DS_Store
+a.out
+*.ft*
