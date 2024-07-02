@@ -6,20 +6,20 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/30 19:00:29 by abnsila           #+#    #+#             */
-/*   Updated: 2024/06/30 20:51:30 by abnsila          ###   ########.fr       */
+/*   Updated: 2024/07/02 15:02:32 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 char	*ft_strupcase(char *str)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (str[i] != '\0')
 	{
 		if (str[i] >= 'a' && str[i] <= 'z')
 		{
-			str[i] = str[i] - 32;		
+			str[i] = str[i] - 32;
 		}
 		i++;
 	}
