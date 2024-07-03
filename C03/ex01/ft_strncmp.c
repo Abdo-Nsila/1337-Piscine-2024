@@ -1,23 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcmp.c                                        :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/02 21:43:55 by abnsila           #+#    #+#             */
-/*   Updated: 2024/07/03 10:41:57 by abnsila          ###   ########.fr       */
+/*   Created: 2024/07/03 10:42:33 by abnsila           #+#    #+#             */
+/*   Updated: 2024/07/03 11:07:34 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_strcmp(char *s1, char *s2)
+int	*ft_strncmp(char *s1, char *s2, unsigned int n)
 {
-	int	i;
+	unsigned int	i;
+	int	result;
+	int	 *p;
 
 	i = 0;
-	while (s1[i] != '\0' && s1[i] == s2[i])
+	while (s1[i] != '\0' && s1[i] == s2[i] && i < (n-1))
 	{
 		i++;
 	}
-	return (s1[i] - s2[i]);
+	
+	result = s1[i] - s2[i];
+	p = &result;
+	return (p);
 }
