@@ -10,25 +10,37 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-int ft_atoi(const char* str)
+int	ft_checkspaces(char c)
 {
-    int i;
-	int sign; 
-	int nbr_base;
-	
-    i = 0;
-    sign = 1;
-    nbr_base = 0;
-	while (str[i] == ' ') {
+	if (c == '\n' || c == '\t' || c == '\f'
+		|| c == '\r' || c == '\v' || c == ' ')
+		return (1);
+	else
+		return (0);
+}
+
+int	ft_atoi(const char *str)
+{
+	int	i;
+	int	sign;
+	int	nbr_base;
+
+	i = 0;
+	sign = 1;
+	nbr_base = 0;
+	while (ft_checkspaces(str[i]) == 1)
+	{
 		i++;
 	}
-
-	while (str[i] == '-' || str[i] == '+') {
-		sign = sign * (1 - 2 * (str[i++] == '-'));
+	while (str[i] == '-' || str[i] == '+')
+	{
+		sign = sign * (1 - 2 * (str[i] == '-'));
+		i++;
 	}
-
-	while (str[i] >= '0' && str[i] <= '9') {
-        nbr_base = 10 * nbr_base + (str[i++] - '0');
+	while (str[i] >= '0' && str[i] <= '9')
+	{
+		nbr_base = 10 * nbr_base + (str[i] - '0');
+		i++;
 	}
 	return (nbr_base * sign);
 }

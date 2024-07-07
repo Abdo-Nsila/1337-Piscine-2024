@@ -10,52 +10,30 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_strncmp(char *s1, char *s2, unsigned int n)
-{
-	unsigned int	i;
-	int	result;
-
-	i = 0;
-	while (s1[i] != '\0' && s1[i] == s2[i] && i < (n - 1))
-	{
-		i++;
-	}
-	result = s1[i] - s2[i];
-	return (result ? 0 : 1);
-}
-
-int	ft_strlen(char *str)
-{
-	int	len;
-
-	len = 0;
-	while (str[len] != '\0')
-	{
-		len++;
-	}
-	return (len);
-}
+#include <stdio.h>
 
 char	*ft_strstr(char *str, char *to_find)
 {
 	int	i;
-	int	matched;
-	char	*ptr;
+	int	j;
 
 	i = 0;
-	matched = 0;
-	if (!*to_find)
+	j = 0;
+	if (to_find[j] == '\0')
 		return (str);
-
+	if (str[i] == '\0')
+		return (0);
 	while (str[i] != '\0')
 	{
-		matched = ft_strncmp(&str[i], to_find, ft_strlen(to_find));
-		if (matched == 1)
+		while ((str[i + j] == to_find[j]) && str[i + j] != '\0'
+			&& to_find[j] != '\0')
+			j++;
+		if (to_find[j] == '\0')
 		{
-			ptr = &str[i];
-			return (ptr);
+			return (&str[i]);
 		}
 		i++;
+		j = 0;
 	}
-	return (NULL);
+	return (0);
 }
