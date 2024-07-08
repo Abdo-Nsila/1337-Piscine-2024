@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 13:33:58 by abnsila           #+#    #+#             */
-/*   Updated: 2024/07/03 15:02:40 by abnsila          ###   ########.fr       */
+/*   Updated: 2024/07/08 09:20:33 by kamado           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ char	*ft_strstr(char *str, char *to_find)
 {
 	int	i;
 	int	j;
+	int	k;
 
 	i = 0;
 	j = 0;
@@ -25,15 +26,15 @@ char	*ft_strstr(char *str, char *to_find)
 		return (0);
 	while (str[i] != '\0')
 	{
-		while ((str[i + j] == to_find[j]) && str[i + j] != '\0'
-			&& to_find[j] != '\0')
-			j++;
-		if (to_find[j] == '\0')
+		k = 0;
+		while ((str[i + k] == to_find[k]) && str[i + k] != '\0'
+			&& to_find[k] != '\0')
+			k++;
+		if (to_find[k] == '\0')
 		{
 			return (&str[i]);
 		}
 		i++;
-		j = 0;
 	}
 	return (0);
 }
