@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 10:38:36 by abnsila           #+#    #+#             */
-/*   Updated: 2024/07/07 18:34:01 by kamado           ###   ########.fr       */
+/*   Updated: 2024/07/08 12:01:26 by kamado           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <unistd.h>
@@ -51,14 +51,12 @@ int	ft_isvalid(char *base, int len)
 	return (1);
 }
 
-void	ft_convert_to_base(int longnbr, char *base, int len)
+void	ft_convert_to_base(int nbr, char *base, int len)
 {
-	if (longnbr < len)
-		ft_putchar(base[longnbr]);
-	else if (longnbr >= len)
+	if (nbr > 0)
 	{
-		ft_convert_to_base(longnbr / len, base, len);
-		ft_convert_to_base(longnbr % len, base, len);
+		ft_convert_to_base(nbr / len, base, len);
+		ft_putchar(base[nbr % len]);
 	}
 }
 
@@ -69,9 +67,23 @@ void	ft_putnbr_base(int nbr, char *base)
 	len = ft_strlen(base);
 	if (ft_isvalid(base, len) == 1)
 	{
-		if (nbr < 0)
-			ft_convert_to_base(-(long)nbr, base, len);
+		if (nbr == 0)
+		{
+			ft_putchar('0');
+		}
+		else if (nbr == -2147483648)
+		{
+			ft_putchar('-');
+			nbr = -(nbr / len);
+			ft_convert_to_base(nbr, base, len);
+			ft_putchar(base[nbr % len]);
+		}
+		else if (nbr < 0)
+		{
+			ft_putchar('-');
+			ft_convert_to_base(-nbr, base, len);
+		}
 		else
-			ft_convert_to_base((long)nbr, base, len);
+			ft_convert_to_base(nbr, base, len);
 	}
 }
