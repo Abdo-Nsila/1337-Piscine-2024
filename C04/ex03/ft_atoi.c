@@ -6,11 +6,11 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 09:19:50 by abnsila           #+#    #+#             */
-/*   Updated: 2024/07/04 10:37:44 by abnsila          ###   ########.fr       */
+/*   Updated: 2024/07/09 22:21:14 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_checkspaces(char c)
+int	ft_check_spaces(char c)
 {
 	if (c == '\n' || c == '\t' || c == '\f'
 		|| c == '\r' || c == '\v' || c == ' ')
@@ -28,13 +28,16 @@ int	ft_atoi(const char *str)
 	i = 0;
 	sign = 1;
 	nbr_base = 0;
-	while (ft_checkspaces(str[i]) == 1)
+	while (ft_check_spaces(str[i]) == 1)
 	{
 		i++;
 	}
-	while (str[i] == '-' || str[i] == '+')
+	while ((str[i] < '0' && str[i] > '9'))
 	{
-		sign = sign * (1 - 2 * (str[i] == '-'));
+		if (str[i] == '-')
+			sign = sign * -1;
+		else
+			return (0);
 		i++;
 	}
 	while (str[i] >= '0' && str[i] <= '9')

@@ -6,9 +6,11 @@
 /*   By: kamado <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 19:14:31 by kamado            #+#    #+#             */
-/*   Updated: 2024/07/09 21:45:45 by abnsila          ###   ########.fr       */
+/*   Updated: 2024/07/09 22:21:26 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include <stdio.h>
 
 int	ft_strlen(char *str)
 {
@@ -71,20 +73,33 @@ int	get_base_index(char c, char *base)
 int	ft_atoi_base(char *str, char *base)
 {
 	int	nbr;
+	int	sign;
 	int	i;
 	int	str_len;
 	int	base_len;
 	
 	nbr = 0;
+	sign = 1;
 	i = 0;
 	str_len = ft_strlen(str);
 	base_len = ft_strlen(base);
 	if (ft_isvalid(base, base_len) == 0)
 		return (0);
+	if (str[i] == '-')
+	{
+		sign = -1;
+		i++;
+	}
+
 	while (i < str_len)
 	{
 		nbr = nbr * base_len + (get_base_index(str[i], base));
 		i++;
 	}
-	return (nbr);
+	return (nbr * sign);
+}
+
+int main(int ac,char **av )
+{
+	printf("Nbr: %d\n", ft_atoi_base(av[1], av[2]));
 }
