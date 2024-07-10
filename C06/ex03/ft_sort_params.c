@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 13:13:25 by abnsila           #+#    #+#             */
-/*   Updated: 2024/07/04 14:15:27 by abnsila          ###   ########.fr       */
+/*   Updated: 2024/07/10 12:00:56 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,21 +48,21 @@ void	ft_swap(char **s1, char **s2)
 	*s2 = swap;
 }
 
-int ft_putargv(int argc, char *argv[])
+int	ft_putargv(int argc, char *argv[])
 {
-    int i;
-    
-    i = 1;
-    while (i < argc)
-    {
-        ft_putstr(argv[i]);
-        write(1, "\n", 1);
-        i++;
-    }
-    return 0;
+	int	i;
+
+	i = 1;
+	while (i < argc)
+	{
+		ft_putstr(argv[i]);
+		write(1, "\n", 1);
+		i++;
+	}
+	return (0);
 }
 
-int main(int argc, char *argv[])
+int	main(int argc, char *argv[])
 {
 	int	sorted;
 	int	i;
@@ -76,13 +76,12 @@ int main(int argc, char *argv[])
 		{
 			if (ft_strcmp(argv[i], argv[i + 1]) > 0)
 			{
-			    sorted = 0;
+				sorted = 0;
 				ft_swap(&argv[i], &argv[i + 1]);
 			}
 			i++;
 		}
 	}
-	
 	ft_putargv(argc, argv);
-    return 0;
+	return (0);
 }

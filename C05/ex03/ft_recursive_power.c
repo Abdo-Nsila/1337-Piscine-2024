@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   ft_recursive_power.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kamado <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/08 13:52:50 by kamado            #+#    #+#             */
-/*   Updated: 2024/07/08 15:14:54 by kamado           ###   ########.fr       */
+/*   Created: 2024/07/10 11:43:03 by abnsila           #+#    #+#             */
+/*   Updated: 2024/07/10 11:43:15 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 int	ft_recursive_power(int nb, int power)
 {
 	if (power < 0)

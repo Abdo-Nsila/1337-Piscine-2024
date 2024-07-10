@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 11:13:03 by abnsila           #+#    #+#             */
-/*   Updated: 2024/07/04 11:26:56 by abnsila          ###   ########.fr       */
+/*   Updated: 2024/07/10 11:54:54 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,16 +24,16 @@ void	ft_putstr(char *str)
 	}
 }
 
-int main(int argc, char *argv[])
+int	main(int argc, char *argv[])
 {
-    int i;
-    
-    i = 1;
-    while (i < argc)
-    {
-        ft_putstr(argv[i]);
-        write(1, "\n", 1);
-        i++;
-    }
-    return 0;
+	int	i;
+
+	i = 1;
+	while (i < argc)
+	{
+		ft_putstr(argv[i]);
+		write(1, "\n", 1);
+		i++;
+	}
+	return (0);
 }
