@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 10:38:36 by abnsila           #+#    #+#             */
-/*   Updated: 2024/07/10 11:37:35 by abnsila          ###   ########.fr       */
+/*   Updated: 2024/07/10 16:27:08 by kamado           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <unistd.h>
@@ -38,8 +38,9 @@ int	ft_isvalid(char *base, int len)
 	while (base[i] != '\0')
 	{
 		j = i + 1;
-		if (base[i] == '-' || base[i] == '+' || (base[i] >= 9 && base[i] <= 13)
-			|| base[i] == 2)
+		if (base[i] == '-' || base[i] == '+')
+			return (0);
+		if ((base[i] >= 9 && base[i] <= 13) || base[i] == 32)
 			return (0);
 		while (base[j] != '\0')
 		{
@@ -75,14 +76,15 @@ void	ft_putnbr_base(int nbr, char *base)
 		else if (nbr == -2147483648)
 		{
 			ft_putchar('-');
-			nbr = -(nbr / len);
+			nbr = 2147483648 / len;
 			ft_convert_to_base(nbr, base, len);
-			ft_putchar(base[nbr % len]);
+			ft_putchar(base[2147483648 % len]);
 		}
 		else if (nbr < 0)
 		{
 			ft_putchar('-');
-			ft_convert_to_base(-nbr, base, len);
+			nbr = -nbr;
+			ft_convert_to_base(nbr, base, len);
 		}
 		else
 			ft_convert_to_base(nbr, base, len);
