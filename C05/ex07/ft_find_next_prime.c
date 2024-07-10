@@ -6,18 +6,20 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 11:45:15 by abnsila           #+#    #+#             */
-/*   Updated: 2024/07/10 18:35:31 by abnsila          ###   ########.fr       */
+/*   Updated: 2024/07/10 22:07:11 by kamado           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include <stdio.h>
 
 int	ft_is_prime(int nb)
 {
 	int	i;
 
+	i = 2;
 	if (nb <= 1)
 		return (0);
-	i = 2;
-	while (i <= (nb / 2))
+	while (i <= (nb / i))
 	{
 		if (!(nb % i))
 			return (0);
@@ -30,8 +32,8 @@ int	ft_find_next_prime(int nb)
 {
 	int	i;
 
-	if (nb < 2)
-
+	if (nb <= 1)
+		return (2);
 	i = nb;
 	while (!ft_is_prime(i))
 	{
