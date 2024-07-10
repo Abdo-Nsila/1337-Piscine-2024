@@ -5,10 +5,11 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/04 10:38:36 by abnsila           #+#    #+#             */
-/*   Updated: 2024/07/10 16:27:08 by kamado           ###   ########.fr       */
+/*   Created: 2024/07/10 16:46:25 by abnsila           #+#    #+#             */
+/*   Updated: 2024/07/10 16:47:25 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include <unistd.h>
 
 void	ft_putchar(char c)
@@ -40,7 +41,7 @@ int	ft_isvalid(char *base, int len)
 		j = i + 1;
 		if (base[i] == '-' || base[i] == '+')
 			return (0);
-		if ((base[i] >= 9 && base[i] <= 13) || base[i] == 32)
+		else if ((base[i] >= 9 && base[i] <= 13) || base[i] == 32)
 			return (0);
 		while (base[j] != '\0')
 		{
