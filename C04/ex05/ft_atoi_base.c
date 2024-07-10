@@ -6,11 +6,9 @@
 /*   By: kamado <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 19:14:31 by kamado            #+#    #+#             */
-/*   Updated: 2024/07/09 22:21:26 by abnsila          ###   ########.fr       */
+/*   Updated: 2024/07/10 11:26:51 by kamado           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include <stdio.h>
 
 int	ft_strlen(char *str)
 {
@@ -22,16 +20,7 @@ int	ft_strlen(char *str)
 	return (len);
 }
 
-int	ft_check_spaces(char c)
-{
-	if (c == '\n' || c == '\t' || c == '\f'
-		|| c == '\r' || c == '\v' || c == ' ')
-		return (1);
-	else
-		return (0);
-}
-
-int	ft_isvalid(char *base, int len)
+int	ft_valid_base(char *base, int len)
 {
 	int	i;
 	int	j;
@@ -43,7 +32,8 @@ int	ft_isvalid(char *base, int len)
 	while (base[i] != '\0')
 	{
 		j = i + 1;
-		if (base[i] == '-' || base[i] == '+' || ft_check_spaces(base[i]) == 1)
+		if (base[i] == '-' || base[i] == '+'
+			|| (base[i] >= 9 && base[i] <= 13) || base[i] == 32)
 			return (0);
 		while (base[j] != '\0')
 		{
@@ -70,36 +60,47 @@ int	get_base_index(char c, char *base)
 	return (-1);
 }
 
+int	ft_valid_char(char c, char *base)
+{
+	int	i;
+	int	cond;
+
+	i = 0;
+	cond = 0;
+	while (base[i] != '\0')
+	{
+		if (base[i] == c)
+			cond = 1;
+		i++;
+	}
+	return (cond);
+}
+
 int	ft_atoi_base(char *str, char *base)
 {
 	int	nbr;
 	int	sign;
 	int	i;
-	int	str_len;
 	int	base_len;
-	
+
 	nbr = 0;
 	sign = 1;
 	i = 0;
-	str_len = ft_strlen(str);
 	base_len = ft_strlen(base);
-	if (ft_isvalid(base, base_len) == 0)
+	if (ft_valid_base(base, base_len) == 0)
 		return (0);
-	if (str[i] == '-')
+	while ((str[i] >= 9 && str[i] <= 13) || str[i] == 32)
+		i++;
+	while (str[i] == '+' || str[i] == '-')
 	{
-		sign = -1;
+		if (str[i] == '-')
+			sign *= -1;
 		i++;
 	}
-
-	while (i < str_len)
+	while (str[i] && (ft_valid_char(str[i], base) == 1))
 	{
 		nbr = nbr * base_len + (get_base_index(str[i], base));
 		i++;
 	}
 	return (nbr * sign);
-}
-
-int main(int ac,char **av )
-{
-	printf("Nbr: %d\n", ft_atoi_base(av[1], av[2]));
 }
