@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 13:13:25 by abnsila           #+#    #+#             */
-/*   Updated: 2024/07/10 12:00:56 by abnsila          ###   ########.fr       */
+/*   Updated: 2024/07/11 10:34:12 by kamado           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,10 +70,12 @@ int	main(int argc, char *argv[])
 	sorted = 0;
 	while (sorted == 0)
 	{
-		i = 0;
+		i = 1;
 		sorted = 1;
 		while (i < argc - 1)
 		{
+			//ft_putstr(argv[i]);
+			//ft_putstr("\n");
 			if (ft_strcmp(argv[i], argv[i + 1]) > 0)
 			{
 				sorted = 0;
