@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 08:04:34 by abnsila           #+#    #+#             */
-/*   Updated: 2024/07/11 17:25:46 by abnsila          ###   ########.fr       */
+/*   Updated: 2024/07/13 17:15:21 by kamado           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,77 +20,79 @@ int	ft_atoi_base(char *str, char *base);
 
 int	ft_nbr_len(int nbr, char *base)
 {
-	int	base_len;
-	int	nbr_len;
+	int			lenght;
+	int			base_lenght;
+	unsigned int		nb;
 
-	nbr_len = 0;
-	base_len = ft_strlen(base);
+	base_lenght = ft_strlen(base);
+	lenght = 0;
 	if (nbr < 0)
 	{
-		nbr = -nbr;
-		nbr_len++;
+		nb = nbr * -1;
+		lenght++;
 	}
-	while (nbr >= base_len)
+	else
+		nb = nbr;
+	while (nb >= (unsigned)base_lenght)
 	{
-		nbr = nbr / base_len;
-		nbr_len++;
+		nb /= base_lenght;
+		lenght++;
 	}
-	nbr_len++;
-	return (nbr_len);
+	lenght++;
+	return (lenght);
 }
 
-char	*ft_putnbr_base(int nbr, char *base, char *dest, int nbr_len)
+void	ft_putnbr_base(int nbr, char *base, char *nbrf)
 {
 	int		lenght_base;
+	long	nb;
 	int		i;
+	int		len_nbrf;
 
 	lenght_base = ft_strlen(base);
+	len_nbrf = ft_nbr_len(nbr, base);
+	nb = nbr;
 	i = 0;
-	if (nbr < 0)
+	if (nb < 0)
 	{
-		dest[i] = '-';
-		nbr *= -1;
-		i++;
+		nbrf[0] = '-';
+		nb *= -1;
+		i = 1;
 	}
-	nbr_len--;
-	while (nbr >= lenght_base)
+	len_nbrf--;
+	while (nb >= lenght_base)
 	{
-		dest[nbr_len] = base[nbr % lenght_base];
-		nbr /= lenght_base;
-		nbr_len--;
-		printf("nbr: %d  here: %s\n",nbr,  dest);
+		nbrf[len_nbrf] = base[nb % lenght_base];
+		nb /= lenght_base;
+		len_nbrf--;
 	}
-	if (nbr < lenght_base)
-		dest[i] = base[nbr];
-	dest[nbr_len - 1] = '\0';
-	return (dest);
+	if (nb < lenght_base)
+		nbrf[i] = base[nb];
 }
 
 char	*ft_convert_base(char *nbr, char *base_from, char *base_to)
 {
+	char	*dest;
 	int		decimal_nbr;
 	int		nbr_len;
-	char	*dest;
 
+	if (ft_valid_base(base_to, ft_strlen(base_to)) == 0
+		|| ft_valid_base(base_from, ft_strlen(base_from)) == 0)
+		return (0);
 	decimal_nbr = ft_atoi_base(nbr, base_from);
 	nbr_len = ft_nbr_len(decimal_nbr, base_to);
 	dest = (char *)malloc((nbr_len + 1) * 1);
-	printf("\n||----------------------------------------||\n");
-	printf("Dest Size: %d\n", (nbr_len + 1) * 1);
-	printf("Current base: %s => %s\n", nbr, base_from);
-	printf("Decimal nbr: %d\n", decimal_nbr);
-	printf("Nbr len: %d\n", ft_nbr_len(decimal_nbr, base_to));
-	return (ft_putnbr_base(decimal_nbr, base_to, dest, nbr_len));
+	if (!dest)
+		return (0);
+	ft_putnbr_base(decimal_nbr, base_to, dest);
+	dest[nbr_len] = '\0';
+	return (dest);
 }
 
 int	main(int ac, char **av)
 {
-	char	*magic_nbr_base;
-
-	if (!ac)
-		return (0);
-	magic_nbr_base = ft_convert_base(av[1], av[2], av[3]);
-	printf("Final Base: %s => %s\n", magic_nbr_base, av[3]);
-	printf("||----------------------------------------||\n");
-	return (0);
+	if (ac >= 4)
+	{
+		printf("Final base: %s\n", ft_convert_base(av[1], av[2], av[3]));
+	}
 }

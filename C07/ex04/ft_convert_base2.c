@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 12:41:22 by abnsila           #+#    #+#             */
-/*   Updated: 2024/07/11 15:04:55 by abnsila          ###   ########.fr       */
+/*   Updated: 2024/07/13 14:23:27 by kamado           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,8 +87,6 @@ int	ft_atoi_base(char *str, char *base)
 	sign = 1;
 	i = 0;
 	base_len = ft_strlen(base);
-	if (ft_valid_base(base, base_len) == 0)
-		return (0);
 	while ((str[i] >= 9 && str[i] <= 13) || str[i] == 32)
 		i++;
 	while (str[i] == '+' || str[i] == '-')
