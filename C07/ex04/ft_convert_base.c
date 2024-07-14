@@ -6,13 +6,11 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 08:04:34 by abnsila           #+#    #+#             */
-/*   Updated: 2024/07/13 17:15:21 by kamado           ###   ########.fr       */
+/*   Updated: 2024/07/14 09:29:34 by kamado           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include <unistd.h>
-#include <stdio.h>
 
 int	ft_strlen(char *str);
 int	ft_valid_base(char *base, int len);
@@ -20,9 +18,9 @@ int	ft_atoi_base(char *str, char *base);
 
 int	ft_nbr_len(int nbr, char *base)
 {
-	int			lenght;
-	int			base_lenght;
-	unsigned int		nb;
+	int		lenght;
+	int		base_lenght;
+	unsigned int	nb;
 
 	base_lenght = ft_strlen(base);
 	lenght = 0;
@@ -87,12 +85,4 @@ char	*ft_convert_base(char *nbr, char *base_from, char *base_to)
 	ft_putnbr_base(decimal_nbr, base_to, dest);
 	dest[nbr_len] = '\0';
 	return (dest);
-}
-
-int	main(int ac, char **av)
-{
-	if (ac >= 4)
-	{
-		printf("Final base: %s\n", ft_convert_base(av[1], av[2], av[3]));
-	}
 }
