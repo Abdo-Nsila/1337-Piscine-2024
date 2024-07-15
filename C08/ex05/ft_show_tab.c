@@ -1,20 +1,32 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_show_tab.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kamado <abnsila@student.1337.ma>           +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/07/15 13:52:42 by kamado            #+#    #+#             */
+/*   Updated: 2024/07/15 13:52:53 by kamado           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <unistd.h>
 
-void    ft_putchar(char c)
+void	ft_putchar(char c)
 {
-    write(1, &c, 1);
+	write(1, &c, 1);
 }
 
-void ft_putstr(char *str)
+void	ft_putstr(char *str)
 {
-    int len;
+	int	len;
 
-    len = 0;
-    while (str[len] != '\0')
-    {
-        ft_putchar(str[len]);
-        len++;
-    }
+	len = 0;
+	while (str[len] != '\0')
+	{
+		ft_putchar(str[len]);
+		len++;
+	}
 }
 
 void	ft_putnbr(int nb)
@@ -42,18 +54,19 @@ void	ft_putnbr(int nb)
 	}
 }
 
-void ft_show_tab(struct s_stock_str *par)
+void	ft_show_tab(struct s_stock_str *par)
 {
-    int i;
-    i = 0;
+	int	i;
+
+	i = 0;
 	while (par[i].str != 0)
 	{
-        ft_putstr(par[i].str);
-        ft_putchar('\n');
-        ft_putnbr(par[i].size);
-        ft_putchar('\n');
-        ft_putstr(par[i].copy);
-        ft_putchar('\n');
+		ft_putstr(par[i].str);
+		ft_putchar('\n');
+		ft_putnbr(par[i].size);
+		ft_putchar('\n');
+		ft_putstr(par[i].copy);
+		ft_putchar('\n');
 		i++;
 	}
 }
