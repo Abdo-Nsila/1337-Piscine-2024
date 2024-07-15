@@ -6,7 +6,7 @@
 /*   By: kamado <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 14:10:17 by kamado            #+#    #+#             */
-/*   Updated: 2024/07/09 14:32:45 by kamado           ###   ########.fr       */
+/*   Updated: 2024/07/14 13:45:18 by kamado           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,14 @@ int	ft_ultimate_range(int **range, int min, int max)
 {
 	int	i;
 	int	*arr;
-	
+
 	i = 0;
 	if (min >= max)
 	{
 		*range = NULL;
 		return (0);
 	}
-
-	arr = (int*) malloc((max - min) * 4);
+	arr = (int *) malloc ((max - min) * 4);
 	if (arr == NULL)
 	{
 		*range = NULL;

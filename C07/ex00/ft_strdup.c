@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 09:55:11 by abnsila           #+#    #+#             */
-/*   Updated: 2024/07/06 10:25:19 by abnsila          ###   ########.fr       */
+/*   Updated: 2024/07/14 15:27:47 by kamado           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	ft_strlen(char *str)
 {
-	int len;
+	int	len;
 
 	len = 0;
 	while (str[len])
@@ -24,22 +24,27 @@ int	ft_strlen(char *str)
 	return (len);
 }
 
-char	*ft_strdup(char *src)
+char	*ft_strcpy(char *dest, char *src)
 {
-	int	i; 
-	char	*ptr;
-	int	len;
+	int	i;
 
 	i = 0;
-	len = ft_strlen(src);
-	ptr = (char*)malloc((len+1) * 1);
-	if (ptr == NULL)
-		return NULL;
 	while (src[i])
 	{
-		ptr[i] = src[i];
+		dest[i] = src[i];
 		i++;
 	}
-	ptr[i] = '\0';
+	dest[i] = '\0';
+	return (dest);
+}
+
+char	*ft_strdup(char *src)
+{
+	char	*ptr;
+
+	ptr = (char *) malloc ((ft_strlen(src) + 1) * 1);
+	if (ptr == NULL)
+		return (NULL);
+	ft_strcpy(ptr, src);
 	return (ptr);
 }

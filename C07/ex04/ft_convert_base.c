@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 08:04:34 by abnsila           #+#    #+#             */
-/*   Updated: 2024/07/14 09:29:34 by kamado           ###   ########.fr       */
+/*   Updated: 2024/07/14 15:35:38 by kamado           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,10 @@ int	ft_strlen(char *str);
 int	ft_valid_base(char *base, int len);
 int	ft_atoi_base(char *str, char *base);
 
-int	ft_nbr_len(int nbr, char *base)
+int	ft_nbr_len(int nbr, char *base, int lenght)
 {
-	int		lenght;
-	int		base_lenght;
 	unsigned int	nb;
 
-	base_lenght = ft_strlen(base);
-	lenght = 0;
 	if (nbr < 0)
 	{
 		nb = nbr * -1;
@@ -31,9 +27,9 @@ int	ft_nbr_len(int nbr, char *base)
 	}
 	else
 		nb = nbr;
-	while (nb >= (unsigned)base_lenght)
+	while (nb >= (unsigned)ft_strlen(base))
 	{
-		nb /= base_lenght;
+		nb /= ft_strlen(base);
 		lenght++;
 	}
 	lenght++;
@@ -48,7 +44,7 @@ void	ft_putnbr_base(int nbr, char *base, char *nbrf)
 	int		len_nbrf;
 
 	lenght_base = ft_strlen(base);
-	len_nbrf = ft_nbr_len(nbr, base);
+	len_nbrf = ft_nbr_len(nbr, base, 0);
 	nb = nbr;
 	i = 0;
 	if (nb < 0)
@@ -78,7 +74,7 @@ char	*ft_convert_base(char *nbr, char *base_from, char *base_to)
 		|| ft_valid_base(base_from, ft_strlen(base_from)) == 0)
 		return (0);
 	decimal_nbr = ft_atoi_base(nbr, base_from);
-	nbr_len = ft_nbr_len(decimal_nbr, base_to);
+	nbr_len = ft_nbr_len(decimal_nbr, base_to, 0);
 	dest = (char *)malloc((nbr_len + 1) * 1);
 	if (!dest)
 		return (0);
