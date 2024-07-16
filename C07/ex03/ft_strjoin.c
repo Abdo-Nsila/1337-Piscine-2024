@@ -1,15 +1,4 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ft_strjoin.c                                       :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: kamado <abnsila@student.1337.ma>           +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/09 14:34:29 by kamado            #+#    #+#             */
-/*   Updated: 2024/07/15 11:49:49 by kamado           ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
+#include <stdio.h>
 #include <stdlib.h>
 
 int	ft_strlen(char *str)
@@ -44,24 +33,29 @@ char	*ft_cat_strs(char *dest, char **strs, int size, char *sep)
 	while (i < size)
 	{
 		ft_strpcat(dest, strs[i], pos);
+		pos += ft_strlen(strs[i]);
 		if (i < size - 1)
-			ft_strpcat(dest, sep, pos + ft_strlen(strs[i]));
-		pos += ft_strlen(strs[i]) + ft_strlen(sep);
+		{
+			ft_strpcat(dest, sep, pos);
+			pos += ft_strlen(sep);
+		}
 		i++;
 	}
 	dest[pos] = '\0';
 	return (dest);
 }
 
-int	count_strs(char **strs, int size)
+int	count_strs(char **strs, int size, char *sep)
 {
 	int	i;
-	int	strs_len;
+	int	strs_len = 0;
 
 	i = 0;
 	while (i < size)
 	{
 		strs_len += ft_strlen(strs[i]);
+		if (i < size - 1)
+			strs_len += ft_strlen(sep);
 		i++;
 	}
 	return (strs_len);
@@ -71,8 +65,14 @@ char	*ft_strjoin(int size, char **strs, char *sep)
 {
 	char	*dest;
 
+	if (size <= 0)
+	{
+		dest = malloc(1);
+		dest[0] = '\0';
+		return (dest);
+	}
 	dest = (char *) malloc
-		((count_strs(strs, size) + ((size - 1) * ft_strlen(sep)) + 1) * 1);
+		((count_strs(strs, size, sep) + 1) * sizeof(char));
 	if (!dest)
 		return (0);
 	ft_cat_strs(dest, strs, size, sep);
