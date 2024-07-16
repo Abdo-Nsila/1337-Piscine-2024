@@ -1,4 +1,15 @@
-#include <stdio.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/07/16 10:00:33 by abnsila           #+#    #+#             */
+/*   Updated: 2024/07/16 10:42:43 by abnsila          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <stdlib.h>
 
 int	ft_strlen(char *str)
@@ -48,9 +59,10 @@ char	*ft_cat_strs(char *dest, char **strs, int size, char *sep)
 int	count_strs(char **strs, int size, char *sep)
 {
 	int	i;
-	int	strs_len = 0;
+	int	strs_len;
 
 	i = 0;
+	strs_len = 0;
 	while (i < size)
 	{
 		strs_len += ft_strlen(strs[i]);
@@ -74,7 +86,7 @@ char	*ft_strjoin(int size, char **strs, char *sep)
 	dest = (char *) malloc
 		((count_strs(strs, size, sep) + 1) * sizeof(char));
 	if (!dest)
-		return (0);
+		return (NULL);
 	ft_cat_strs(dest, strs, size, sep);
 	return (dest);
 }
