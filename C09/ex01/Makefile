@@ -23,6 +23,8 @@ clean:
 	rm -f $(MY_OBJECTS)
 
 fclean: clean
-	rf -f $(NAME)
+	rm -f $(NAME)
 
 re: fclean all
+
+.PHONY: all clean fclean re
